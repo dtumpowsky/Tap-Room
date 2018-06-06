@@ -22,7 +22,7 @@ export class AppComponent {
       'Two Beers',
       'IPA',
       7.00,
-      '8.0%',
+      8.0,
       124
     ),
     new Keg(
@@ -30,7 +30,7 @@ export class AppComponent {
       'Two Beers',
       'Winter Ale',
       9.00,
-      '6.5%',
+      6.5,
       105
     ),
     new Keg(
@@ -38,7 +38,7 @@ export class AppComponent {
       'Fremont Brewing',
       'Pale Ale',
       5.00,
-      '5.2%',
+      5.2,
       117
     )
   ];
@@ -83,6 +83,16 @@ export class AppComponent {
       return "bg-warning";
     } else {
       return "bg-danger";
+    }
+  }
+
+  alcoholIndex(clickedKeg) {
+    if (clickedKeg.alcoholContent <= 6) {
+      return "bg-success";
+    } else if (clickedKeg.alcoholContent <= 8) {
+      return "bg-primary";
+    } else {
+      return "bg-warning";
     }
   }
 }
