@@ -25,7 +25,7 @@
       <br>
     </li>
   </ol> -->
-
+<!--
   <div *ngIf="selectedKeg">
     <label>Edit Keg:</label>
       <br>
@@ -41,7 +41,7 @@
       <input [(ngModel)]="selectedKeg.pints">
       <br>
     <button (click)="finishedEditing()">Done</button>
-  </div>
+  </div> -->
 
 <table class="table">
   <thead>
@@ -66,10 +66,32 @@
         <button (click)="pourBeer(currentKeg)">Pour</button>
         <button (click)="editKeg(currentKeg)">Edit</button>
         <button (click)="replaceKeg(currentKeg)">Replace Keg</button>
-
       </td>
     </tbody>
+    <button (click)="inputKeg(newKeg)">Tap New Keg</button>
 </table>
+
+
+<div *ngIf="newKeg">
+  <td>
+  <label>Edit Keg:</label>
+    <br>
+    <input [(ngModel)]="newKeg.name">
+    <br>
+    <input [(ngModel)]="newKeg.brand">
+    <br>
+    <input [(ngModel)]="newKeg.type">
+    <br>
+    <input [(ngModel)]="newKeg.price">
+    <br>
+    <input [(ngModel)]="newKeg.alcoholContent">
+    <input [(ngModel)]="newKeg.pints">
+    <br>
+  <button (click)="tapKeg()">Done</button>
+  </td>
+</div>
+
+
 
 <div *ngIf="selectedKeg">
   <td>

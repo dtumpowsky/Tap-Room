@@ -44,8 +44,7 @@ export class AppComponent {
   ];
 
   selectedKeg=null;
-  selectedPint=null;
-// edit Keg properties
+
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
   }
@@ -53,6 +52,14 @@ export class AppComponent {
 //unselect keg
   finishedEditing() {
     this.selectedKeg = null;
+  }
+
+  inputKeg(clickedKeg) {
+    this.selectedKeg = clickedKeg;
+  }
+
+  tapKeg(tappedKeg) {
+    this.kegs.push(tappedKeg);
   }
 
 
@@ -85,7 +92,7 @@ export class AppComponent {
       return "bg-danger";
     }
   }
-
+//colors items based on alcohol content
   alcoholIndex(clickedKeg) {
     if (clickedKeg.alcoholContent <= 6) {
       return "bg-success";
