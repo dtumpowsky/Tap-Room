@@ -44,7 +44,7 @@ export class AppComponent {
   ];
 
   selectedKeg=null;
-  selectedpint=null;
+  selectedPint=null;
 // edit Keg properties
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
@@ -54,7 +54,12 @@ export class AppComponent {
   finishedEditing() {
     this.selectedKeg = null;
   }
+//pour beer, pint incriments down by 1
+  pourBeer(clickedKeg) {
+    this.selectedPint = clickedKeg;
+    clickedKeg.pints --;
+  }
 
-  
+
 
 }

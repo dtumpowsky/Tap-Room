@@ -9,7 +9,7 @@
   <ol>
     <li *ngFor="let currentKeg of kegs">
       <ul>
-        <li>{{currentKeg.name}} <button (click)="editKeg(currentKeg)">Edit</button></li>
+        <li>{{currentKeg.name}} <button (click)="editKeg(currentKeg)">Edit</button> <button (click)="pourBeer(currentKeg)">Pour</button></li>
           <ul>
             <li>{{currentKeg.brand}}</li>
             <li>{{currentKeg.type}}</li>
@@ -35,6 +35,5 @@
       <br>
       <input [(ngModel)]="selectedKeg.alcoholContent">
       <br>
-      <input [(ngModel)]="selectedKeg.pints">
     <button (click)="finishedEditing()">Done</button>
   </div>
