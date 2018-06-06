@@ -44,6 +44,8 @@ export class AppComponent {
   ];
 
   selectedKeg=null;
+  newKeg: Keg[] = [];
+
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
@@ -60,6 +62,7 @@ export class AppComponent {
 
   tapKeg(tappedKeg) {
     this.kegs.push(tappedKeg);
+    this.newKeg = [];
   }
 
 

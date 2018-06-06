@@ -53,6 +53,7 @@
       <th scope="col">Alc %</th>
       <th scope="col">Pints Left</th>
       <th scope="col">Admin</th>
+      <th scope="col"><button (click)="inputKeg(newKeg)">Tap New Keg</button></th>
     </tr>
   </thead>
     <tbody *ngFor="let currentKeg of kegs" [class]="kegLevelWarning(currentKeg)">
@@ -68,13 +69,12 @@
         <button (click)="replaceKeg(currentKeg)">Replace Keg</button>
       </td>
     </tbody>
-    <button (click)="inputKeg(newKeg)">Tap New Keg</button>
 </table>
 
 
 <div *ngIf="newKeg">
   <td>
-  <label>Edit Keg:</label>
+  <label>Enter New Keg</label>
     <br>
     <input [(ngModel)]="newKeg.name">
     <br>
@@ -87,8 +87,8 @@
     <input [(ngModel)]="newKeg.alcoholContent">
     <input [(ngModel)]="newKeg.pints">
     <br>
-  <button (click)="tapKeg()">Done</button>
   </td>
+  <button (click)="tapKeg(newKeg)">Done</button>
 </div>
 
 
