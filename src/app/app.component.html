@@ -9,13 +9,17 @@
   <ol>
     <li *ngFor="let currentKeg of kegs">
       <ul>
-        <li>{{currentKeg.name}} <button (click)="editKeg(currentKeg)">Edit</button> <button (click)="pourBeer(currentKeg)">Pour</button></li>
+        <li>{{currentKeg.name}}
+          <button (click)="editKeg(currentKeg)">Edit</button>
+          <button (click)="pourBeer(currentKeg)">Pour</button>
+          <button (click)="replaceKeg(currentKeg)">Replace Keg</button>
+        </li>
           <ul>
             <li>{{currentKeg.brand}}</li>
             <li>{{currentKeg.type}}</li>
-            <li>{{currentKeg.price}}</li>
+            <li [class]="priceIndex(currentKeg)">${{currentKeg.price}}.00 pt.</li>
             <li>{{currentKeg.alcoholContent}}</li>
-            <li>{{currentKeg.pints}}</li>
+            <li [class]="kegLevelWarning(currentKeg)">{{currentKeg.pints}} pints left</li>
           </ul>
       </ul>
       <br>
@@ -34,6 +38,7 @@
       <input [(ngModel)]="selectedKeg.price">
       <br>
       <input [(ngModel)]="selectedKeg.alcoholContent">
+      <input [(ngModel)]="selectedKeg.pints">
       <br>
     <button (click)="finishedEditing()">Done</button>
   </div>

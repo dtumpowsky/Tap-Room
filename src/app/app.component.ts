@@ -21,7 +21,7 @@ export class AppComponent {
       'Wonderland Trail',
       'Two Beers',
       'IPA',
-      '$7.00 pt',
+      7.00,
       '8.0%',
       124
     ),
@@ -29,7 +29,7 @@ export class AppComponent {
       'Tipsy Toboggan',
       'Two Beers',
       'Winter Ale',
-      '$6.00 pt',
+      9.00,
       '6.5%',
       105
     ),
@@ -37,7 +37,7 @@ export class AppComponent {
       'Summer Ale',
       'Fremont Brewing',
       'Pale Ale',
-      '$6.00 pt',
+      5.00,
       '5.2%',
       117
     )
@@ -54,12 +54,35 @@ export class AppComponent {
   finishedEditing() {
     this.selectedKeg = null;
   }
+
+
+  replaceKeg(clickedKeg) {
+    clickedKeg.pints = 124;
+  }
 //pour beer, pint incriments down by 1
   pourBeer(clickedKeg) {
-    this.selectedPint = clickedKeg;
     clickedKeg.pints --;
+    if (clickedKeg.pints == 0) {
+      alert("Keg is tapped. Please Replace Keg");
   }
+}
 
-
-
+//colors kegs that are approaching empty
+  kegLevelWarning(clickedKeg) {
+    if (clickedKeg.pints <= 10) {
+      return "bg-danger";
+    } else if (clickedKeg.pints <= 25) {
+      return "bg-warning";
+    }
+  }
+//colors items based on price
+  priceIndex(clickedKeg) {
+    if (clickedKeg.price <= 7) {
+      return "bg-info";
+    } else if (clickedKeg.price <= 10) {
+      return "bg-warning";
+    } else {
+      return "bg-danger";
+    }
+  }
 }
