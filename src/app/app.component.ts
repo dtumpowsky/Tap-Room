@@ -23,7 +23,6 @@ export class AppComponent {
       'IPA',
       7.00,
       8.0,
-      124
     ),
     new Keg(
       'Tipsy Toboggan',
@@ -31,7 +30,6 @@ export class AppComponent {
       'Winter Ale',
       9.00,
       6.5,
-      105
     ),
     new Keg(
       'Summer Ale',
@@ -39,11 +37,11 @@ export class AppComponent {
       'Pale Ale',
       5.00,
       5.2,
-      117
     )
   ];
 
   selectedKeg=null;
+  showNewKegForm=null;
   newKeg: Keg[] = [];
 
 
@@ -56,13 +54,19 @@ export class AppComponent {
     this.selectedKeg = null;
   }
 
-  inputKeg(clickedKeg) {
-    this.selectedKeg = clickedKeg;
+  tapKeg(clickedKeg) {
+    this.showNewKegForm = clickedKeg;
   }
-
-  tapKeg(tappedKeg) {
+//push new keg to table
+  inputKeg(tappedKeg) {
+    if ((tappedKeg.name || tappedKeg.brewery || tappedKeg.type || tappedKeg.price || tappedKeg.alcoholContent) == null) {
+      alert("Invalid Entry: Please fill out all fields");
+    } else {
+    tappedKeg.pints = 124;
     this.kegs.push(tappedKeg);
     this.newKeg = [];
+    this.showNewKegForm = null;
+    }
   }
 
 

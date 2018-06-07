@@ -1,32 +1,69 @@
-<div style="text-align:center">
-  <h1>{{title}}</h1>
-  <h3>{{currentFocus}}</h3>
-</div>
-<h2>On Tap:</h2>
-  <h6>{{month}}/{{day}}/{{year}}</h6>
-  <br>
-<!--
-  <ol>
-    <li *ngFor="let currentKeg of kegs">
-      <ul>
-        <li>{{currentKeg.name}}
-          <button (click)="editKeg(currentKeg)">Edit</button>
+<div class = "container">
+  <div style="text-align:center">
+    <h1>{{title}}</h1>
+    <h3>{{currentFocus}}</h3>
+  </div>
+  <h2>On Tap:</h2>
+    <h6>{{month}}/{{day}}/{{year}}</h6>
+    <br>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Brewery</th>
+        <th scope="col">Type</th>
+        <th scope="col">Price</th>
+        <th scope="col">Alc %</th>
+        <th scope="col">Pints Left</th>
+        <th scope="col">Admin</th>
+        <th scope="col"><button (click)="tapKeg(newKeg)">Tap New Keg</button></th>
+      </tr>
+    </thead>
+      <tbody *ngFor="let currentKeg of kegs" [class]="kegLevelWarning(currentKeg)">
+        <th scope ="row">{{currentKeg.name}}</th>
+        <td>{{currentKeg.brand}}</td>
+        <td>{{currentKeg.type}}</td>
+        <td [class]="priceIndex(currentKeg)">${{currentKeg.price}}.00 pt.</td>
+        <td [class]="alcoholIndex(currentKeg)">{{currentKeg.alcoholContent}}%</td>
+        <td>{{currentKeg.pints}}</td>
+        <td>
           <button (click)="pourBeer(currentKeg)">Pour</button>
+          <button (click)="editKeg(currentKeg)">Edit</button>
           <button (click)="replaceKeg(currentKeg)">Replace Keg</button>
-        </li>
-          <ul>
-            <li>{{currentKeg.brand}}</li>
-            <li>{{currentKeg.type}}</li>
-            <li [class]="priceIndex(currentKeg)">${{currentKeg.price}}.00 pt.</li>
-            <li>{{currentKeg.alcoholContent}}</li>
-            <li [class]="kegLevelWarning(currentKeg)">{{currentKeg.pints}} pints left</li>
-          </ul>
-      </ul>
+        </td>
+      </tbody>
+  </table>
+
+
+
+  <div *ngIf="showNewKegForm">
+    <td>
+    <label><strong>Enter New Keg:</strong></label>
       <br>
-    </li>
-  </ol> -->
-<!--
+      <label>Name: </label>
+      <input [(ngModel)]="newKeg.name" placeholder="eg. Spacedust">
+      <br>
+      <label>Brewery: </label>
+      <input [(ngModel)]="newKeg.brand" placeholder="eg. Elysian">
+      <br>
+      <label>Type: </label>
+      <input [(ngModel)]="newKeg.type" placeholder="eg. IPA">
+      <br>
+      <label>Price: </label>
+      <input [(ngModel)]="newKeg.price" placeholder="eg. 10">
+      <br>
+      <label>Alcohol %: </label>
+      <input [(ngModel)]="newKeg.alcoholContent" placeholder="eg. 9.4">
+      <br>
+    </td>
+    <button (click)="inputKeg(newKeg)">Add</button>
+  </div>
+
+
+
   <div *ngIf="selectedKeg">
+    <td>
     <label>Edit Keg:</label>
       <br>
       <input [(ngModel)]="selectedKeg.name">
@@ -41,73 +78,6 @@
       <input [(ngModel)]="selectedKeg.pints">
       <br>
     <button (click)="finishedEditing()">Done</button>
-  </div> -->
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Brewery</th>
-      <th scope="col">Type</th>
-      <th scope="col">Price</th>
-      <th scope="col">Alc %</th>
-      <th scope="col">Pints Left</th>
-      <th scope="col">Admin</th>
-      <th scope="col"><button (click)="inputKeg(newKeg)">Tap New Keg</button></th>
-    </tr>
-  </thead>
-    <tbody *ngFor="let currentKeg of kegs" [class]="kegLevelWarning(currentKeg)">
-      <th scope ="row">{{currentKeg.name}}</th>
-      <td>{{currentKeg.brand}}</td>
-      <td>{{currentKeg.type}}</td>
-      <td [class]="priceIndex(currentKeg)">${{currentKeg.price}}.00 pt.</td>
-      <td [class]="alcoholIndex(currentKeg)">{{currentKeg.alcoholContent}}%</td>
-      <td>{{currentKeg.pints}}</td>
-      <td>
-        <button (click)="pourBeer(currentKeg)">Pour</button>
-        <button (click)="editKeg(currentKeg)">Edit</button>
-        <button (click)="replaceKeg(currentKeg)">Replace Keg</button>
-      </td>
-    </tbody>
-</table>
-
-
-<div *ngIf="newKeg">
-  <td>
-  <label>Enter New Keg</label>
-    <br>
-    <input [(ngModel)]="newKeg.name">
-    <br>
-    <input [(ngModel)]="newKeg.brand">
-    <br>
-    <input [(ngModel)]="newKeg.type">
-    <br>
-    <input [(ngModel)]="newKeg.price">
-    <br>
-    <input [(ngModel)]="newKeg.alcoholContent">
-    <input [(ngModel)]="newKeg.pints">
-    <br>
-  </td>
-  <button (click)="tapKeg(newKeg)">Done</button>
-</div>
-
-
-
-<div *ngIf="selectedKeg">
-  <td>
-  <label>Edit Keg:</label>
-    <br>
-    <input [(ngModel)]="selectedKeg.name">
-    <br>
-    <input [(ngModel)]="selectedKeg.brand">
-    <br>
-    <input [(ngModel)]="selectedKeg.type">
-    <br>
-    <input [(ngModel)]="selectedKeg.price">
-    <br>
-    <input [(ngModel)]="selectedKeg.alcoholContent">
-    <input [(ngModel)]="selectedKeg.pints">
-    <br>
-  <button (click)="finishedEditing()">Done</button>
-  </td>
+    </td>
+  </div>
 </div>

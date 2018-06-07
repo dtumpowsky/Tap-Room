@@ -5,6 +5,6 @@ export class Keg {
     public type: string,
     public price: number,
     public alcoholContent: number,
-    public pints: number
+    public pints: number = 124
   ) { }
 }
