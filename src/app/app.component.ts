@@ -59,7 +59,7 @@ export class AppComponent {
   }
 //push new keg to table
   inputKeg(tappedKeg) {
-    if ((tappedKeg.name || tappedKeg.brewery || tappedKeg.type || tappedKeg.price || tappedKeg.alcoholContent) == null) {
+    if (tappedKeg.name == null || tappedKeg.brewery == null || tappedKeg.type == null || tappedKeg.price == null || tappedKeg.alcoholContent == null) {
       alert("Invalid Entry: Please fill out all fields");
     } else {
     tappedKeg.pints = 124;
